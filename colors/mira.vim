@@ -173,7 +173,8 @@ call s:highlight('Error', s:none, s:light, 'underline')
 call s:highlight('Todo', s:dark, s:grey)
 " }}}
 
-" Customize fzf Colors: {{{
+" Customization {{{
+" fzf Colors: {{{
 let g:fzf_colors =
             \ { 'fg':      ['fg', 'Normal'],
             \ 'bg':      ['bg', 'Normal'],
@@ -188,6 +189,16 @@ let g:fzf_colors =
             \ 'marker':  ['fg', 'Keyword'],
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
+" }}}
+" Markdown: {{{
+call s:highlight('markdownH1', s:dark, s:light, 'bold,reverse')
+call s:highlight('markdownH2', s:dark, s:light, 'reverse')
+call s:highlight('markdownH3', s:dark, s:light, 'bold')
+call s:highlight('markdownH4', s:dark, s:light, 'bold')
+call s:highlight('markdownH5', s:dark, s:light, 'underline')
+call s:highlight('markdownH6', s:dark, s:light, 'underline')
+call s:highlight('markdownLinkText', s:dark, s:light, 'underline')
+" }}}
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
