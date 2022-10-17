@@ -51,24 +51,12 @@ let s:palette.slategrey2 = [87, '#5fffff'] " rgb(95,255,255),hsl(180,100%,68%)
 let s:palette.plum2= [183, '#d7afff'] " rgb(215,175,255),hsl(270,100%,84%)
 " }}}
 " Mira Specific Gray Scale Settings: {{{
-let s:fg0 = s:palette.grey3
-let s:fg1 = s:palette.grey11
-let s:fg2 = s:palette.grey19
-let s:fg3 = s:palette.grey27
-let s:fg4 = s:palette.grey39
-let s:fg5 = s:palette.grey50
-
-let s:bg0 = s:palette.grey93
-let s:bg1 = s:palette.grey89
-" let s:bg2 = s:palette.grey78
+let s:dark = s:palette.grey3
+let s:light = s:palette.grey93
 " slategrey2 gives a middle ground between dark and light with Mira settings to
 " dark==6 and light==0
 " and plum2 the same effect for dark==10 and light==0
-" let s:bg2 = s:palette.slategrey2
-let s:bg2 = s:palette.plum2
-let s:bg3 = s:palette.grey70
-let s:bg4 = s:palette.grey62
-let s:bg5 = s:palette.grey54
+let s:grey = s:palette.plum2
 
 let s:none = s:palette.none
 " }}}
@@ -93,80 +81,78 @@ endfunction
 " }}}
 
 " Common Highlight Groups: {{{
-call s:highlight('Normal', s:fg1, s:bg0)
-call s:highlight('Terminal', s:fg1, s:none)
-call s:highlight('Conceal', s:fg1, s:none, 'underline')
-call s:highlight('Folded', s:fg4, s:bg0)
-call s:highlight('NonText', s:fg4, s:none)
-call s:highlight('MatchParen', s:fg1, s:bg0, 'reverse')
-call s:highlight('Whitespace', s:fg3, s:none)
-call s:highlight('SpecialKey', s:fg3, s:none)
+call s:highlight('Normal', s:dark, s:light)
+call s:highlight('Terminal', s:dark, s:none)
+call s:highlight('Conceal', s:dark, s:none, 'underline')
+call s:highlight('Folded', s:dark, s:light, 'underline')
+call s:highlight('NonText', s:dark, s:none)
+call s:highlight('MatchParen', s:light, s:dark)
+call s:highlight('Whitespace', s:dark, s:none)
+call s:highlight('SpecialKey', s:dark, s:none)
 
-call s:highlight('Visual', s:bg0, s:fg1)
-call s:highlight('VisualNOS', s:fg1, s:bg2)
+call s:highlight('Visual', s:light, s:dark)
+call s:highlight('VisualNOS', s:dark, s:grey)
 
-call s:highlight('ToolbarLine', s:fg3, s:none)
-call s:highlight('ToolbarButton', s:fg3, s:bg2)
-call s:highlight('FoldColumn', s:fg4, s:none)
-call s:highlight('SignColumn', s:fg3, s:none)
-call s:highlight('ColorColumn', s:none, s:bg0)
-call s:highlight('LineNr', s:fg3, s:bg0)
-call s:highlight('CursorLineNr', s:fg1, s:none)
+call s:highlight('ToolbarLine', s:dark, s:none)
+call s:highlight('ToolbarButton', s:dark, s:grey)
+call s:highlight('FoldColumn', s:dark, s:none)
+call s:highlight('SignColumn', s:dark, s:none)
+call s:highlight('ColorColumn', s:none, s:light)
+call s:highlight('LineNr', s:dark, s:light)
+call s:highlight('CursorLineNr', s:dark, s:none)
 " }}}
 " Cursor: {{{
-" call s:highlight('Cursor', s:fg1, s:bg0, 'reverse')
+" call s:highlight('Cursor', s:dark, s:light, 'reverse')
 call s:highlight('Cursor', s:none, s:none, 'reverse')
 highlight! link vCursor Cursor
 highlight! link iCursor Cursor
 highlight! link lCursor Cursor
 highlight! link CursorIM Cursor
 highlight! link TermCursor Cursor
-call s:highlight('CursorLine', s:none, s:bg1)
-call s:highlight('CursorColumn', s:none, s:bg2)
+call s:highlight('CursorLine', s:none, s:none)
+call s:highlight('CursorColumn', s:none, s:none)
 " Make insert mode cursor a block instead of a bar, which is hard to see
 set guicursor=n-v-c-sm:block,i-ci-ve:block-iCursor-blinkoff500-blinkon500,r-cr-o:hor20
 " }}}
 " Status Line And Split: {{{
-" call s:highlight('StatusLine', s:fg1, s:bg3)
-" call s:highlight('StatusLineNC', s:bg0, s:bg4)
-call s:highlight('StatusLine', s:bg0, s:fg3)
-call s:highlight('StatusLineNC', s:bg0, s:fg4)
-call s:highlight('VertSplit', s:fg4, s:none)
+call s:highlight('StatusLine', s:light, s:dark)
+call s:highlight('StatusLineNC', s:light, s:dark)
+call s:highlight('VertSplit', s:dark, s:none)
 highlight! link WinSeparator VertSplit
-call s:highlight('TabLine', s:bg1, s:fg1, 'reverse')
-call s:highlight('TabLineFill', s:fg1, s:bg0)
-call s:highlight('TabLineSel', s:bg0, s:fg2)
-call s:highlight('QuickFixLine', s:fg1, s:none, 'italic')
+call s:highlight('TabLine', s:dark, s:light)
+call s:highlight('TabLineFill', s:dark, s:light)
+call s:highlight('TabLineSel', s:light, s:dark)
+call s:highlight('QuickFixLine', s:dark, s:none, 'italic')
 " }}}
 " Search: {{{
 " set both to none such that it works with Cursor(also both set to none) in a
 " way both of them can toggle the color, therefore easier to find where the
 " cursor is in the highlighted word
 call s:highlight('Search', s:none, s:none, 'reverse')
-call s:highlight('IncSearch', s:fg4, s:none, 'reverse')
-call s:highlight('Substitute', s:fg2, s:bg1)
+call s:highlight('IncSearch', s:none, s:none, 'reverse')
+call s:highlight('Substitute', s:none, s:none, 'reverse')
 " }}}
 " Diff: {{{
-call s:highlight('DiffAdd', s:fg1, s:bg0, 'bold')
-call s:highlight('DiffChange', s:fg1, s:bg0, 'underline')
-call s:highlight('DiffText', s:fg1, s:bg1, 'bold,italic,underline')
-call s:highlight('DiffDelete', s:fg1, s:bg0, 'strikethrough')
+call s:highlight('DiffAdd', s:dark, s:light, 'bold')
+call s:highlight('DiffChange', s:dark, s:light, 'underline')
+call s:highlight('DiffText', s:dark, s:light, 'bold,italic,underline')
+call s:highlight('DiffDelete', s:dark, s:light, 'strikethrough')
 " }}}
 " Messages: {{{
-call s:highlight('Directory', s:fg1, s:bg0, 'bold')
-call s:highlight('ErrorMsg', s:fg1, s:bg0, 'bold,underline,reverse')
-call s:highlight('WarningMsg', s:fg1, s:bg0, 'bold')
-call s:highlight('ModeMsg', s:fg1, s:none, 'bold')
-call s:highlight('MoreMsg', s:fg1, s:none)
-call s:highlight('Question', s:fg1, s:bg0)
+call s:highlight('Directory', s:dark, s:light, 'bold')
+call s:highlight('ErrorMsg', s:dark, s:light, 'bold,underline,reverse')
+call s:highlight('WarningMsg', s:dark, s:light, 'bold')
+call s:highlight('ModeMsg', s:dark, s:none, 'bold')
+call s:highlight('MoreMsg', s:dark, s:none)
+call s:highlight('Question', s:dark, s:light)
 " }}}
 " Popups: {{{
-call s:highlight('Pmenu', s:fg1, s:bg0)
-call s:highlight('PmenuSel', s:fg1, s:bg0, 'reverse')
+call s:highlight('Pmenu', s:dark, s:light)
+call s:highlight('PmenuSel', s:dark, s:light, 'reverse')
 highlight! link WildMenu PmenuSel
-call s:highlight('PmenuSbar', s:bg0, s:bg3)
-call s:highlight('PmenuThumb', s:bg0, s:bg3)
-call s:highlight('NormalFloat', s:fg1, s:bg0)
+call s:highlight('PmenuSbar', s:light, s:dark)
+call s:highlight('PmenuThumb', s:light, s:dark)
+call s:highlight('NormalFloat', s:dark, s:light)
 " }}}
 " Spell: {{{
 call s:highlight('SpellBad', s:none, s:none, 'underline')
@@ -175,16 +161,16 @@ call s:highlight('SpellLocal', s:none, s:none, 'underline')
 call s:highlight('SpellRare', s:none, s:none, 'underline')
 " }}}
 " Syntax: {{{
-call s:highlight('Comment', s:fg4, s:none, 'italic')
-call s:highlight('Constant', s:fg1, s:none)
-call s:highlight('Identifier', s:fg0, s:none, 'bold')
+call s:highlight('Comment', s:dark, s:none, 'italic')
+call s:highlight('Constant', s:dark, s:none)
+call s:highlight('Identifier', s:dark, s:none, 'bold')
 call s:highlight('Statement', s:none, s:none, 'bold')
 call s:highlight('PreProc', s:none, s:none, 'italic')
 call s:highlight('Type', s:none, s:none, 'bold')
-call s:highlight('Special', s:none, s:bg0)
+call s:highlight('Special', s:none, s:light)
 call s:highlight('Underlined', s:none, s:none, 'underline')
-call s:highlight('Error', s:none, s:bg1, 'underline')
-call s:highlight('Todo', s:fg0, s:bg2)
+call s:highlight('Error', s:none, s:light, 'underline')
+call s:highlight('Todo', s:dark, s:grey)
 " }}}
 
 " Customize fzf Colors: {{{
@@ -203,3 +189,5 @@ let g:fzf_colors =
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
 " }}}
+
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
