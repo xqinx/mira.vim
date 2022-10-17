@@ -57,10 +57,11 @@ function! airline#themes#mira#refresh()
   let g:airline#themes#mira#palette.visual.airline_error = g:airline#themes#mira#palette.normal.airline_error
   let g:airline#themes#mira#palette.visual_modified.airline_error = g:airline#themes#mira#palette.normal_modified.airline_error
 
-  " for inactive pane, ideally we'd use CursorLine's bg, however since NERDTree also uses this for
-  " it's selected line, and I personally prefer a light bg in NERDTree while a
-  " dark bg in inactive status line, I am using CursorColumn's bg here instead
-  let s:IA = airline#themes#get_highlight2(['TabLineFill', 'fg'], ['CursorColumn', 'bg'])
+  " for inactive window, we use StatusLineNC's color, now this is a trick: if
+  " StatusLine and StatusLineNC is the same, vim will put a bunch of '^'s in the
+  " active window, this is how we know which window is active when their colors
+  " are the same.
+  let s:IA = airline#themes#get_highlight2(['StatusLineNC', 'fg'], ['StatusLineNC', 'bg'])
   let g:airline#themes#mira#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)
   let g:airline#themes#mira#palette.inactive_modified = { 'airline_c': modified_group }
 
