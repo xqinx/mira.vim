@@ -4,9 +4,9 @@ This is a vim/nvim color scheme specifically designed for E-Ink monitors.
 The monitor I used for developing is Mira Pro from Boox, hence
 the scheme's name.
 
-It's still WIP but at this point it's usable for my basic coding needs.
+It's still WIP (yea, I just go my monitor in Oct. 2022), but at this point it's usable for my daily vim use.
 
-## Done Features
+## Done(?) Features
 * Customized pallete to display grey scale (binary, actually) colors
 * Bold, italic, underline defined for syntax groups
 * Diff view
@@ -15,12 +15,27 @@ It's still WIP but at this point it's usable for my basic coding needs.
 * fzf support
 
 ## TODOs
-* more syntax tweaks for common languages
+* Make grey color support configurable
+* More syntax tweaks for common languages
   - [x] markdown
   - [ ] python
   - [ ] js
 
+## Photos
+Here are some photos of the actual display
+#### Black+White
+Black and white settings *should work* for most of terminals and monitor
+settings. In some rare cases it might need some tuning. Issues are welcome.
+![Photo: BW](http://i.imgur.com/Ax5Clx3.png)
+
+#### Black+White with an additional Grey
+
+A grey color may be added, but it is not stable, since how the grey would look like is largely depending on the terminal you are using
+and your monitor settings, thus most likely will need manual tuning to get it displayed correctly. Here's how it looks *on my
+machine*
+![Photo: Grey](http://i.imgur.com/cQ5HcKe.png)
+
 ---
 This work is inspired by the popular color scheme
-[gruvbox](https://github.com/morhetz/gruvbox), which is my to-go scheme when I am
+[gruvbox](https://github.com/morhetz/gruvbox), which is my go-to scheme when I am
 on a regular display.
