@@ -35,6 +35,19 @@ and your monitor settings, thus most likely will need manual tuning to get it di
 machine*
 ![Photo: Grey](http://i.imgur.com/cQ5HcKe.png)
 
+## Fine Tuning
+If you need to tune some of the color to match your monitor settings, here is a
+useful script I run to figure out which RGB color gets mapped to black or white
+based on a specific monitor settings:
+```shell
+for i in {0..255} ; do
+    printf "\x1b[48;5;%sm%3d\e[0m " "$i" "$i"
+    if (( i == 15 )) || (( i > 15 )) && (( (i-15) % 6 == 0 )); then
+        printf "\n";
+    fi
+done
+```
+
 ---
 This work is inspired by the popular color scheme
 [gruvbox](https://github.com/morhetz/gruvbox), which is my go-to scheme when I am
